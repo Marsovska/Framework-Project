@@ -1,5 +1,6 @@
 Feature: Login Validation for HRMs portal
-
+Background:
+ # Given user is able to navigate to HRMs
 
   @1
   Scenario: Login with empty username field

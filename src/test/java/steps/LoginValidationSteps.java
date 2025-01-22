@@ -1,5 +1,6 @@
 package steps;
 
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import utils.CommonMethods;
@@ -10,6 +11,12 @@ import utils.CommonMethods;
 
 
 public class LoginValidationSteps extends CommonMethods {
+
+    @Given("user is able to navigate to HRMs")
+    public void user_is_able_to_navigate_to_hr_ms() {
+       //this step is already incorporated in common methods by creating the open browser() method
+    }
+
     @When("user leaves username box empty {string} and enters {string}")
     public void user_leaves_username_box_empty_and_enters(String username, String password) {
         loginValidationPage.usernameBox.sendKeys(username);

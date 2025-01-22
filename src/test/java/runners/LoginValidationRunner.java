@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features/LoginValidation.feature",
         glue = "steps",
-        dryRun =false,
+        dryRun =true,
       plugin = {"pretty","html:target/project.html"},
         tags = ""
 )

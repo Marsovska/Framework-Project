@@ -1,6 +1,8 @@
 Feature: Add Employee to HRMs portal
 
   Background:
+    #Given user is able to navigate to HRMs
+
     When user enters "Admin" and "Hum@nhrm123"
     And user clicks on save button
     Then user lands on Dashboard successfully

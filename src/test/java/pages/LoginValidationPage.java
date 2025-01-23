@@ -17,18 +17,14 @@ public class LoginValidationPage extends CommonMethods {
 
     @FindBy(id="spanMessage")
      public WebElement automatedErrorMessage;
-    @FindBy(id="welcome")
-    public WebElement welcomeMsg;
+
+    @FindBy(xpath ="//h1[text()='Dashboard']")
+    public WebElement dashboard;
 
 
     public LoginValidationPage(){
         PageFactory.initElements(driver, this);
     }
 
-    public String getAutomatedErrorMessage(){
-        return automatedErrorMessage.getText().toString();
-    }
-    public String getWelcomeMessage(){
-        return welcomeMsg.getText().toString();
-    }
+
 }

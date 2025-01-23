@@ -36,9 +36,8 @@ public class AddEmployeePage extends CommonMethods {
     @FindBy(xpath = "//input[@id='btnSave']")
     public WebElement saveButton;
 
-    @FindBy(xpath = "//span[@for='lastName']")
-    public WebElement requiredField;
-
+    @FindBy(xpath = "//span[@for='firstName']")
+    public WebElement emptyFieldError;
 
     public AddEmployeePage(){
         PageFactory.initElements(driver,this);

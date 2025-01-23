@@ -5,52 +5,42 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import utils.CommonMethods;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
 public class LoginValidationSteps extends CommonMethods {
 
-    @Given("user is able to navigate to HRMs")
-    public void user_is_able_to_navigate_to_hr_ms() {
-       //this step is already incorporated in common methods by creating the open browser() method
+    @When("user enter {string} and {string}")
+    public void user_enter_and(String username, String password) {
+       loginValidationPage.usernameBox.sendKeys(username);
+       loginValidationPage.passwordBox.sendKeys(password);
     }
-
-    @When("user leaves username box empty {string} and enters {string}")
-    public void user_leaves_username_box_empty_and_enters(String username, String password) {
-        loginValidationPage.usernameBox.sendKeys(username);
-        loginValidationPage.passwordBox.sendKeys(password);
-
-    }
-
-
     @When("user submits")
     public void user_submits() {
-       loginValidationPage.loginButton.click();
+      loginValidationPage.loginButton.click();
     }
     @Then("user is getting error message")
     public void user_is_getting_error_message() {
-        System.out.println(loginValidationPage.getAutomatedErrorMessage().toString());
+       String actualMessage=loginValidationPage.automatedErrorMessage.getText();
+
+        List<String> expectedMessage= Arrays.asList("Password is Empty",
+                "Username cannot be empty",
+                "Invalid credentials");
+
+       assertTrue("Error message does not match expected. Actual message: "+actualMessage,expectedMessage.contains(actualMessage));
     }
-    @When("user enters {string} and empty password field {string}")
-    public void user_enters_and_empty_password_field(String usrName, String passWord) {
-        loginValidationPage.usernameBox.sendKeys(usrName);
-        loginValidationPage.passwordBox.sendKeys(passWord);
-    }
-    @When("user enters wrong credentials {string} and {string}")
-    public void user_enters_wrong_credentials_and(String usr, String pass) {
-        loginValidationPage.usernameBox.sendKeys(usr);
-        loginValidationPage.passwordBox.sendKeys(pass);
-    }
-    @When("user enters correct credentials {string} and {string}")
-    public void user_enters_correct_credentials_and(String usernameInput, String passInput) {
-        loginValidationPage.usernameBox.sendKeys(usernameInput);
-        loginValidationPage.passwordBox.sendKeys(passInput);
-    }
+
     @Then("user lands on dashboard page and gets welcome message")
     public void user_lands_on_dashboard_page_and_gets_welcome_message() {
-        System.out.println(loginValidationPage.getWelcomeMessage());
+       String actualMessage=loginValidationPage.dashboard.getText();
+       String expectedMessage="Dashboard";
+       assertEquals("The welcome message does not match!",expectedMessage,actualMessage);
+
     }
 
 }

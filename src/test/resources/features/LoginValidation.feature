@@ -2,30 +2,30 @@ Feature: Login Validation for HRMs portal
 Background:
  # Given user is able to navigate to HRMs
 
-  @1
+  @first
   Scenario: Login with empty username field
-    When user leaves username box empty "" and enters "password"
+    When user enter "" and "password"
     And user submits
     Then user is getting error message
 
 
-    @2
+    @second
     Scenario: Login with empty password field
-      When user enters "Admin" and empty password field ""
+      When user enter "Admin" and ""
       And user submits
       Then user is getting error message
 
 
-      @3
+      @third
       Scenario: Login with wrong credential
-        When user enters wrong credentials "Admi" and "Humanhrm123"
+        When user enter "Admi" and "Humanhrm123"
         And user submits
         Then user is getting error message
 
 
-        @4
+        @fourth
         Scenario: Login with valid credentials
-          When user enters correct credentials "Admin" and "Hum@nhrm123"
+          When user enter "Admin" and "Hum@nhrm123"
           And user submits
           Then user lands on dashboard page and gets welcome message
 

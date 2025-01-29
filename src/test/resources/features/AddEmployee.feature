@@ -3,8 +3,7 @@ Feature: Add Employee to HRMs portal
   Background:
     #Given user is able to navigate to HRMs
 
-    When user enters "Admin" and "Hum@nhrm123"
-    And user clicks on save button
+    When user enters login credentials and submit
     Then user lands on Dashboard successfully
     When user is on dashboard page click PIM option
     And user click on AddEmployee tag
@@ -12,8 +11,7 @@ Feature: Add Employee to HRMs portal
 
   @first
   Scenario: Add Employee by first, middle and last name
-    #When user enters "Admin" and "Hum@nhrm123"
-    #And user clicks on save button
+   # When user enters login credentials and submit
     #Then user lands on Dashboard successfully
     #When user is on dashboard page click PIM option
     #And user click on AddEmployee tag
@@ -25,8 +23,8 @@ Feature: Add Employee to HRMs portal
     And user enter "Tom" and "Brady " and "78905"
     Then employee is added successfully
 
-    @third
-    Scenario: Adding employee with incomplete information
-      When user enter  only middle name "JT"
-      And user click on enter
-      Then user can see clear error message
+  @third
+  Scenario: Adding employee with incomplete information
+    When user enter  only middle name "JT"
+    And user click on enter
+    Then user can see clear error message

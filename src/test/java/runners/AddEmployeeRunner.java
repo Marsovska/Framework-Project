@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         glue = "steps",
         dryRun =false,
         plugin = {"pretty","html:target/project.html"},
-        tags = ""
+        tags = "@first"
 )
 public class AddEmployeeRunner {
 }

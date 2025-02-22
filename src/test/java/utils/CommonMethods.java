@@ -4,9 +4,13 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,8 +25,11 @@ public class CommonMethods extends PageInitializer {
         String browser = ConfigReader.read("browser");
         switch (browser) {
             case "chrome":
-                driver = new ChromeDriver();
+                 ChromeOptions options=new ChromeOptions();
+                options.addArguments("--headless");
+                driver=new ChromeDriver(options);
                 break;
+               // driver = new ChromeDriver();
             case "firefox":
                 driver = new FirefoxDriver();
                 break;
@@ -65,4 +72,24 @@ public class CommonMethods extends PageInitializer {
         return picByte;
     }
 
+
+    public static void waitForElementToBeVisible(WebElement element) {
+        getWait().until(ExpectedConditions.visibilityOf(element));
+    }
+    public static  void sentText(String text, WebElement element){
+        waitForElementToBeVisible(element);
+        element.clear();
+        element.sendKeys(text);
+    }
+    public static WebDriverWait getWait(){
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+        return wait;
+}
+    public static void clickOnElement(WebElement element){
+        waitForElementToBeClickable(element);
+        element.click();
+    }
+    public static void waitForElementToBeClickable(WebElement element) {
+        getWait().until(ExpectedConditions.elementToBeClickable(element));
+    }
 }
